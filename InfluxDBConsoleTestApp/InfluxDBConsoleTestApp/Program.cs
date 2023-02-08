@@ -16,13 +16,17 @@ namespace InfluxDBConsoleTestApp
     {
         static async System.Threading.Tasks.Task Main(string[] args)
         {
- 
+
             Console.WriteLine("Starting Application!");
             Console.WriteLine();
 
-            var influxHandler = new InfluxDBHandler();
+            var filePath = args[0];
+            var token = args[1];
+            var organisation = args[2];
+
+            var influxHandler = new InfluxDBHandler(filePath, token, organisation);
             influxHandler.Connect();
-            
+
             try
             {
                 var count = 0;
@@ -43,7 +47,7 @@ namespace InfluxDBConsoleTestApp
                     influxHandler.getData();
                     stopwatch.Stop();
                 }
-                
+
 
                 TimeSpan ts = stopwatch.Elapsed;
 
@@ -53,7 +57,8 @@ namespace InfluxDBConsoleTestApp
                 Console.WriteLine("RunTime " + elapsedTime);
                 Console.WriteLine("Data: " + count.ToString());
                 Console.ReadLine();
-            } catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 Console.WriteLine("Error Writing Data!");
                 Console.ReadLine();
