@@ -33,7 +33,7 @@ namespace InfluxDBConsoleTestApp
                 Stopwatch stopwatch = new Stopwatch();
                 Console.WriteLine("Read (r) or Write (w)?");
                 var input = Console.ReadLine();
-                if (input == "w" || input == "R")
+                if (input == "w" || input == "W")
                 {
                     stopwatch.Start();
                     Console.WriteLine("Store Data to Influx dashboard DB!");
